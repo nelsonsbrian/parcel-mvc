@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <title>Parcel Service</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Here are your package(s)!</h1>
+      <h1>A Massive List</h1>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Package Size (in)</strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Package Volume (in3)</strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Cost to Ship ($)</strong>
+        </div>
+      </div>
+      <hr>
+      @foreach( Parcels.Models.Parcel parcel in Model)
+      {
+        <div class="row">
+          <div class="col-md-3">
+            @parcel.Length X @parcel.Width X @parcel.Height
+          </div>
+          <div class="col-md-3">
+            @parcel.GetVolume()
+          </div>
+          <div class="col-md-3">
+            $@parcel.GetCost()
+          </div>
+        </div>
+        <hr>
+      }
+      @{double total = 0;
+        int count = 0;
+        foreach( Parcels.Models.Parcel parcel in Model)
+        {
+          total = total + parcel.GetCost();
+          count = count + 1;
+        }
+      }
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+          <strong>@count packages</strong>
+        </div>
+        <div class="col-md-3">
+          <strong>$@total</strong>
+        </div>
+      </div>
+      <br>
+      <a href='Parcels/Add'>Add a new parcel<a/>
+    </div>
+  </body>
+  </html>

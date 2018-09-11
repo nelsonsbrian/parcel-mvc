@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Parcel.Models
+namespace Parcels.Models
 {
+
   public class Parcel
   {
     // private float _length;
@@ -19,10 +20,10 @@ namespace Parcel.Models
     //   _height = height;
     // }
 
-    public Parcel()
-    {
-
-    }
+    // public Parcel()
+    // {
+    //
+    // }
 
     public float Length { get; set; }
     public float Width { get; set; }
@@ -30,12 +31,17 @@ namespace Parcel.Models
 
     public void CalcVolume()
     {
-      _volume = Parcel.Length * Parcel.Width * Parcel.Height;
+      _volume = Length * Width * Height;
     }
 
     public void Save()
     {
       _packages.Add(this);
+    }
+
+    public double GetVolume()
+    {
+      return _volume;
     }
 
     public static List<Parcel> GetAll()
@@ -47,5 +53,22 @@ namespace Parcel.Models
     {
       _packages.Clear();
     }
+
+    public double GetCost()
+    {
+      double cost = _volume * .98;
+      return cost;
+    }
+    // public static double CalcTotal()
+    // {
+    //   double total = 0;
+    //   foreach(Parcel parcel in _packages)
+    //   {
+    //     total += parcel.GetCost();
+    //   }
+    //   return total;
+    // }
+
+
   }
 }
